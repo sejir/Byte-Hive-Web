@@ -26,6 +26,10 @@ class Act
      * @var string
      *
      * @ORM\Column(name="nom_act", type="string", length=20, nullable=false)
+     *  @Assert\Regex(
+     * pattern = "/^[a-zA-Z\s]+$/i",
+     * message = "Vous ne devez saisir que des lettres et des espaces"
+     * )
      */
     private $nomAct;
 
@@ -33,6 +37,10 @@ class Act
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=200, nullable=false)
+     *  @Assert\Regex(
+     * pattern = "/^[a-zA-Z\s]+$/i",
+     * message = "Vous ne devez saisir que des lettres et des espaces"
+     * )
      */
     private $description;
 
@@ -52,7 +60,7 @@ class Act
      *
      * @ORM\Column(name="d_fin", type="date", nullable=false )
      *  @Assert\GreaterThan(
-     *     value = "$dDebut",
+     *     value = "today GMT+9",
      *     message = "La date debut doit dépasser la date de debut"
      * )
      */
@@ -62,6 +70,10 @@ class Act
      * @var string
      *
      * @ORM\Column(name="emplacement", type="string", length=20, nullable=false)
+     *  @Assert\Regex(
+     * pattern = "/^[a-zA-Z\s]+$/i",
+     * message = "Vous ne devez saisir que des lettres et des espaces"
+     * )
      */
     private $emplacement;
 

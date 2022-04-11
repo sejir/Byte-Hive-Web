@@ -32,6 +32,10 @@ class Localisation
      * @var string
      *
      * @ORM\Column(name="d_emplacement", type="string", length=80, nullable=false)
+     *  @Assert\Regex(
+     * pattern = "/^[a-zA-Z\s]+$/i",
+     * message = "Vous ne devez saisir que des lettres et des espaces"
+     * )
      */
     private $dEmplacement;
 
