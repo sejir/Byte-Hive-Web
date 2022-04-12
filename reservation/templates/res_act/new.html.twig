@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ResAct{% endblock %}
+
+{% block body %}
+    <h1>Create new ResAct</h1>
+
+    {{ include('res_act/_form.html.twig') }}
+
+    <a href="{{ path('app_res_act_index') }}">back to list</a>
+{% endblock %}

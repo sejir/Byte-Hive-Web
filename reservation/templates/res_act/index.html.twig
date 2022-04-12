@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ResAct index{% endblock %}
+
+{% block body %}
+    <h1>ResAct index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Idres</th>
+                <th>Nomclient</th>
+                <th>Prenomc</th>
+                <th>Idact</th>
+                <th>NbrePerso</th>
+                <th>Numc</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for res_act in res_acts %}
+            <tr>
+                <td>{{ res_act.idres }}</td>
+                <td>{{ res_act.nomclient }}</td>
+                <td>{{ res_act.prenomc }}</td>
+                <td>{{ res_act.idact }}</td>
+                <td>{{ res_act.nbrePerso }}</td>
+                <td>{{ res_act.numc }}</td>
+                <td>
+                    <a href="{{ path('app_res_act_show', {'idres': res_act.idres}) }}">show</a>
+                    <a href="{{ path('app_res_act_edit', {'idres': res_act.idres}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_res_act_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ResCabine index{% endblock %}
+
+{% block body %}
+    <h1>ResCabine index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Num</th>
+                <th>NbPersonnes</th>
+                <th>Type</th>
+                <th>Prix</th>
+                <th>Dispo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for res_cabine in res_cabines %}
+            <tr>
+                <td>{{ res_cabine.id }}</td>
+                <td>{{ res_cabine.num }}</td>
+                <td>{{ res_cabine.nbPersonnes }}</td>
+                <td>{{ res_cabine.type }}</td>
+                <td>{{ res_cabine.prix }}</td>
+                <td>{{ res_cabine.dispo }}</td>
+                <td>
+                    <a href="{{ path('app_res_cabine_show', {'id': res_cabine.id}) }}">show</a>
+                    <a href="{{ path('app_res_cabine_edit', {'id': res_cabine.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_res_cabine_new') }}">Create new</a>
+{% endblock %}
