@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Upcomingevents{% endblock %}
+
+{% block body %}
+    <h1>Create new Upcomingevents</h1>
+
+    {{ include('upcomingevents/_form.html.twig') }}
+
+    <a href="{{ path('app_upcomingevents_index') }}">back to list</a>
+
+{% endblock body %}
+{% block js %}
+    <script src="../../public/front-office/vendor/aos/aos.js"></script>
+    <script src="../../public/front-office/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../public/front-office/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="../../public/front-office/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="../../public/front-office/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="../../public/front-office/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="../../public/front-office/js/main.js"></script>
+
+{% endblock js %}
