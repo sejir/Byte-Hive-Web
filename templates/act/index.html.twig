@@ -5,6 +5,16 @@
 {% block body %}
     <h1>Act index</h1>
     <button><a href="/CalendrierAct">Calendrier</a></button>
+    <button><a href="/AfficheActPDF">PDF</a></button>
+    <button><a href="/triDateDebutAsc">Date Asc</a></button>
+    <button><a href="/triDateDebutDesc">Date Desc</a></button>
+    <div class="search_item" >
+        <input  id="myInputAct"  type="text" class="btn btn-sm btn-outline-info"  name="searchLieu" placeholder="recherche ...">
+    </div>
+
+
+    <section>
+        <table class="container">
 
     <table class="table">
         <thead>
@@ -22,6 +32,8 @@
             </tr>
         </thead>
         <tbody>
+        <tbody id="myTableAct">
+        <tr>
         {% for act in acts %}
             <tr>
               
@@ -48,7 +60,28 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
 
+        </tr>
+        </tbody>
+    </table>
+    </table>
+    <div class="d-flex justify-content-center">
+        {% do acts.setPageRange(2) %}
+        {{ knp_pagination_render(acts, 'Pagination.html.twig')}}
+    </div>
     <a href="{{ path('act_new') }}">Create new</a>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInputAct").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTableAct tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+    </section>
+
 {% endblock %}

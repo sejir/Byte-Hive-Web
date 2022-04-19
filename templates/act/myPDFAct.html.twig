@@ -1,0 +1,80 @@
+<head>
+    <style>
+        /**
+            Set the margins of the page to 0, so the footer and the header
+            can be of the full height and width !
+         **/
+        @page {
+            margin: 0cm 0cm;
+        }
+        /** Define now the real margins of every page in the PDF **/
+        body {
+            margin-top: 3.5cm;
+            margin-left: 1cm;
+            margin-right: 1cm;
+            margin-bottom: 2cm;
+        }
+
+        /** Define the header rules **/
+        header {
+            position: fixed;
+            top: 0cm;
+            left: 0cm;
+            right: 0cm;
+            height: 3cm;
+        }
+
+        /** Define the footer rules **/
+        footer {
+            position: fixed;
+            bottom: 0cm;
+            left: 0cm;
+            right: 0cm;
+            height: 2cm;
+        }
+
+    </style>
+</head>
+<body>
+<!-- Define header and footer blocks before your content -->
+<header>
+    <div class="intro_price" style="color: purple;margin-left: 10px;margin-top: 10px"><b>Nature Cruise</b></div>
+    <div style="font-size: 15px;margin-left: 10px">  Adresse : Esprit Technopole Ghazela Ariana</div>
+    <div style="font-size: 15px;margin-left: 10px">  Numéro : +216 52 111 111</div>
+    <div style="font-size: 15px;margin-left: 10px">  E-mail : NatureCruise@gmail.com</div>
+
+    <div><img src="{{ ('images/logo esprit.png') }}" style="width: 200px;height: 120px;margin-left: 580px;margin-top: -80px"></div>
+    <hr class="cmDEY eufYP cDHZq" style="color: dimgray;width: 750px;">
+</header>
+
+<footer>
+</footer>
+{% block body %}
+
+    <div class="container" style="background-color:transparent">
+        <h1 align="center" style="color: black">Liste des activités</h1>
+        <table class="theme_dark" style="background-color: #ffffff" style="table-border: 2px" border="" align="center" >
+            <tr style="background-color: rgba(179,139,194,0.56)">
+                <th> NomAct </th>
+                <th> Description </th>
+                <th> Date Début </th>
+                <th> Date Fin </th>
+                <th> Emplacement </th>
+            </tr>
+            {% for act in acts %}
+                <tr>
+                    <td>{{ act.nomAct}}</td>
+                    <td>{{ act.description}}</td>
+                    <td>{{ act.dDebut ? act.dDebut|date('Y-m-d') : '' }} </td>
+                    <td>{{ act.dFin ? act.dFin|date('Y-m-d') : '' }}</td>
+                    <td>{{ act.emplacement }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br><br>
+        <div style="margin-left: 450px;font-size: 15px" align="center"></div>
+        <br>
+        <div style="margin-left: 550px;font-size: 15px"> Le : {{ "now"|date("m/d/Y")}}  </div>
+<img src="{{ ('images/logo esprit.png') }}" style="width: 150px;height: 50px;margin-left: 520px" alt="">
+</div>
+{% endblock %}

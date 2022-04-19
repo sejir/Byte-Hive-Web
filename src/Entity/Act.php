@@ -3,7 +3,8 @@
 namespace App\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-
+use DateTime;
+use DateTimeInterface;
 
 /**
  * Act
@@ -59,7 +60,7 @@ class Act
      * @var \DateTime
      *
      * @ORM\Column(name="d_fin", type="date", nullable=false )
-     *  
+     *
      */
     private $dFin;
 
@@ -130,24 +131,28 @@ class Act
         return $this;
     }
 
-    public function getDDebut(): ?\DateTimeInterface
+    public function getDDebut(): ?DateTimeInterface
     {
         return $this->dDebut;
     }
-
-    public function setDDebut(\DateTimeInterface $dDebut): self
+    /**
+     * @param \DateTimeInterface
+     */
+    public function setDDebut(DateTimeInterface $dDebut): self
     {
         $this->dDebut = $dDebut;
 
         return $this;
     }
 
-    public function getDFin(): ?\DateTimeInterface
+    public function getDFin(): ?DateTimeInterface
     {
         return $this->dFin;
     }
-
-    public function setDFin(\DateTimeInterface $dFin): self
+    /**
+     * @param \DateTimeInterface
+     */
+    public function setDFin(DateTimeInterface $dFin): self
     {
         $this->dFin = $dFin;
 
