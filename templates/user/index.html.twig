@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des utlisateurs{% endblock %}
+
+{% block body %}
+    <h1>Liste des utlisateurs</h1>
+        <input type="search" id="search" class="form-control" placeholder="search..">
+<div id="defTable">
+ <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Password</th>
+                <th>Lastname</th>
+                <th>Name</th>
+                <th>Profilepicture</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.Lastname }}</td>
+                <td>{{ user.Name }}</td>
+                <td>{{ user.ban }}</td>
+                <td>{{ user.activate }}</td>
+
+                
+                <td> <img src={{ asset('uploads/images/' ~ user.Profilepicture) }} alt="" width="120" height="120" class="rounded-circle"></td>
+
+                    </div>
+                <td>
+                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('app_user_delete', {'id': user.id}) }}">delete</a>
+                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('ban', {'id': user.id}) }}">ban</a> 
+                    <a href="{{ path('activate', {'id': user.id}) }}">activate</a> 
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        
+        </tbody>
+    </table>
+</div>
+ 
+
+  
+    <div  id="filtred">
+
+    </div>
+
+    <a href="{{ path('utlisateur_new') }}">Create new</a>
+    <a href="{{ path('userslist') }}">PDF FILE</a>
+        <script>
+        $(document).ready(function (){
+            $('#search').keyup(function(){
+            
+                var search =$('#search').val();
+               
+                var DATA  =  {'search':search};
+             
+                $.ajax({type:"POST",
+                        url: "{{ path('app_user_index')}}"  ,
+                        data: DATA,
+                        success: function (data) {
+                          console.log(data);
+                                $("#defTable").hide();
+                                $("#filtred2").remove();
+                                $("#filtred").html("<div id='filtred2'></div>")
+                                $.each(data, function (k, user) {
+                                    $("#filtred2").append(
+                                         "<table class='table'>"+
+    
+                                         "<tr>"+
+                "<td>" + user.id+"</td>"+
+                "<td>"+ user.email+ "</td>"+
+                "<td>"+ user.password+ "</td>"+
+               "<td>"+ user.lastname+ "</td>"+
+               "<td>"+ user.name+ "</td>"+
+               "<td>"+ user.ban+ "</td>"+
+               "<td>"+ user.activate+ "</td>"+
+
+                
+                "<td>"+ "<img src='uploads/images/"+  user.profilepicture+"' alt='' width='120' height='120' class='rounded-circle'>"+"</td>"+
+
+           " </tr>"+"</table>"
+           
+
+                                    );
+                                })
+                            
+                        }
+                    }
+                );
+            });
+        });
+    </script>
+{% endblock %}
