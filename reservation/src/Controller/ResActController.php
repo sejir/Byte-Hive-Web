@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\ResActRepository;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\BarChart;
 
 /**
  * @Route("/res/act")
@@ -86,11 +88,84 @@ class ResActController extends AbstractController
      */
     public function delete(Request $request, ResAct $resAct, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$resAct->getIdres(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $resAct->getIdres(), $request->request->get('_token'))) {
             $entityManager->remove($resAct);
             $entityManager->flush();
         }
 
         return $this->redirectToRoute('app_res_act_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/map/map", name="map_index", methods={"GET"})
+     */
+    public function map(): Response
+    {
+        return $this->render('res_act/mapact.html.twig');
+    }
+
+    /**
+     * @Route("/{idres}", name="app_res_act_show", methods={"GET"})
+     */
+    public function shows(ResAct $resAct): Response
+    {
+        return $this->render('res_act/show.html.twig', [
+            'res_act' => $resAct,
+        ]);
+    }
+    /**
+     * @Route("/stats/chart", name="statistique")
+     */
+    public function stat(ResActRepository $Repository): Response
+    {
+
+
+        /*$pieChart->getOptions()->setTitle('Etat de terrain:');
+        $pieChart->getOptions()->setHeight(500);
+        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#303030');
+        $pieChart->getOptions()->getTitleTextStyle()->setItalic(false);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);*/
+        $nbs = $Repository->countNbrePerso();
+        $data = [['e', 'res_act']];
+        foreach( (array)$nbs as $nb)
+        {
+            $data[] = array($nb['e'], $nb['res_act']);
+        }
+
+
+
+
+
+        $bar = new barchart();
+        $bar->getData()->setArrayToDataTable(
+            $data
+        );
+
+        $bar->getOptions()->setTitle('Nbre de personnes par activité:');
+        $bar->getOptions()->setHeight(500);
+        $bar->getOptions()->setWidth(900);
+        $bar->getOptions()->getTitleTextStyle()->setColor('#07600');
+        $bar->getOptions()->getTitleTextStyle()->setFontSize(25);
+
+
+
+
+
+
+        return $this->render('res_act/stat.html.twig', array('barchart' => $bar,'nbs' => $nbs));
+    }
+    /**
+     * @Route("/rechercheAct{word}", name="rechercheAct")
+     */
+    public function rechercheAct($word): Response
+    {
+        $em=$this->getDoctrine()->getManager()->getRepository(resAct::class)->findByExampleField($word);
+
+        return $this->render('res_act/index.html.twig', [
+            'res_acts' => $em,
+        ]);
     }
 }

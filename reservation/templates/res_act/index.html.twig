@@ -1,10 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'Frontend.html.twig' %}
 
 {% block title %}ResAct index{% endblock %}
 
 {% block body %}
     <h1>ResAct index</h1>
-
+    <textarea id = "search"></textarea>
     <table class="table">
         <thead>
             <tr>
@@ -40,4 +40,6 @@
     </table>
 
     <a href="{{ path('app_res_act_new') }}">Create new</a>
+    <a href="{{ path('map_index') }}">Go to map</a>
+    <a href="{{ path('statistique') }}">Statistiques</a>
 {% endblock %}

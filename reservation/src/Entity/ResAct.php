@@ -6,9 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * ResAct
- *
+ *@ORM\Entity (repositoryClass="App\Repository\ResActRepository")
  * @ORM\Table(name="res_act", uniqueConstraints={@ORM\UniqueConstraint(name="NumC", columns={"NumC"})})
- * @ORM\Entity
+
  */
 class ResAct
 {

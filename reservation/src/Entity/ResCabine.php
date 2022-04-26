@@ -6,9 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * ResCabine
- *
+ *@ORM\Entity (repositoryClass="App\Repository\ResCabineRepository")
  * @ORM\Table(name="res_cabine", uniqueConstraints={@ORM\UniqueConstraint(name="num", columns={"num"})})
- * @ORM\Entity
+
  */
 class ResCabine
 {
@@ -38,8 +38,8 @@ class ResCabine
 
     /**
      * @var string
-     *@Assert\NotIdenticalTo("Bangalow",message="Type not available")
-     *@Assert\NotBlank(message="Type is required")
+     *@Assert\NotIdenticalTo("Bangalow")
+     *@Assert\NotBlank(message="Prix is required")
      * @ORM\Column(name="type", type="string", length=20, nullable=false)
      */
     private $type;
