@@ -2,55 +2,73 @@
 
 namespace App\Entity;
 
-use App\Repository\ReclamationLocalisationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ReclamationLocalisationRepository::class)
+ * Reclamationlocalisation
+ *
+ * @ORM\Table(name="reclamationlocalisation")
+ * @ORM\Entity
  */
-class ReclamationLocalisation
+class Reclamationlocalisation
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="id_client", type="integer", nullable=false)
      */
-    private $id_client;
+    private $idClient;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var int|null
+     *
+     * @ORM\Column(name="id_admin", type="integer", nullable=true)
      */
-    private $id_admin;
+    private $idAdmin;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_localisation;
-
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=250, nullable=false)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string|null
+     *
+     * @ORM\Column(name="reponse", type="string", length=250, nullable=true)
      */
-    private $respond;
+    private $reponse;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="daterec", type="datetime", nullable=true, options={"default"="CURRENT_TIMESTAMP"})
+     */
+    private $daterec = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="status", type="boolean", nullable=false)
      */
     private $status;
 
     /**
-     * @ORM\Column(type="date")
+     * @var int
+     *
+     * @ORM\Column(name="id_localisation", type="integer", nullable=false)
      */
-    private $reclamationdate;
+    private $idLocalisation;
 
     public function getId(): ?int
     {
@@ -59,36 +77,24 @@ class ReclamationLocalisation
 
     public function getIdClient(): ?int
     {
-        return $this->id_client;
+        return $this->idClient;
     }
 
-    public function setIdClient(int $id_client): self
+    public function setIdClient(int $idClient): self
     {
-        $this->id_client = $id_client;
+        $this->idClient = $idClient;
 
         return $this;
     }
 
     public function getIdAdmin(): ?int
     {
-        return $this->id_admin;
+        return $this->idAdmin;
     }
 
-    public function setIdAdmin(int $id_admin): self
+    public function setIdAdmin(?int $idAdmin): self
     {
-        $this->id_admin = $id_admin;
-
-        return $this;
-    }
-
-    public function getIdLocalisation(): ?int
-    {
-        return $this->id_localisation;
-    }
-
-    public function setIdLocalisation(int $id_localisation): self
-    {
-        $this->id_localisation = $id_localisation;
+        $this->idAdmin = $idAdmin;
 
         return $this;
     }
@@ -105,14 +111,26 @@ class ReclamationLocalisation
         return $this;
     }
 
-    public function getRespond(): ?string
+    public function getReponse(): ?string
     {
-        return $this->respond;
+        return $this->reponse;
     }
 
-    public function setRespond(?string $respond): self
+    public function setReponse(?string $reponse): self
     {
-        $this->respond = $respond;
+        $this->reponse = $reponse;
+
+        return $this;
+    }
+
+    public function getDaterec(): ?\DateTimeInterface
+    {
+        return $this->daterec;
+    }
+
+    public function setDaterec(?\DateTimeInterface $daterec): self
+    {
+        $this->daterec = $daterec;
 
         return $this;
     }
@@ -129,15 +147,17 @@ class ReclamationLocalisation
         return $this;
     }
 
-    public function getReclamationdate(): ?\DateTimeInterface
+    public function getIdLocalisation(): ?int
     {
-        return $this->reclamationdate;
+        return $this->idLocalisation;
     }
 
-    public function setReclamationdate(\DateTimeInterface $reclamationdate): self
+    public function setIdLocalisation(int $idLocalisation): self
     {
-        $this->reclamationdate = $reclamationdate;
+        $this->idLocalisation = $idLocalisation;
 
         return $this;
     }
+
+
 }
