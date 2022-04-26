@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ReclamationLocalisation index{% endblock %}
+
+{% block body %}
+    <h1>Reclamation Localisation index</h1>
+
+    <table class="table" border="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id_client</th>
+                <th>Id_admin</th>
+                <th>Id_localisation</th>
+                <th>Description</th>
+                <th>Respond</th>
+                <th>Status</th>
+                <th>Reclamationdate</th>
+                <th>Location</th>
+                <th>Email</th>
+                <th>Full_name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamation_localisation in reclamation_localisations %}
+            <tr>
+                <td>{{ reclamation_localisation.id }}</td>
+                <td>{{ reclamation_localisation.idClient }}</td>
+                <td>{{ reclamation_localisation.idAdmin }}</td>
+                <td>{{ reclamation_localisation.idLocalisation }}</td>
+                <td>{{ reclamation_localisation.description }}</td>
+                <td>{{ reclamation_localisation.respond }}</td>
+                <td>{{ reclamation_localisation.status ? 'Yes' : 'No' }}</td>
+                <td>{{ reclamation_localisation.reclamationdate ? reclamation_localisation.reclamationdate|date('Y-m-d') : '' }}</td>
+                <td>{{ reclamation_localisation.location }}</td>
+                <td>{{ reclamation_localisation.email }}</td>
+                <td>{{ reclamation_localisation.fullname }}</td>
+                
+                <td>
+                <div class="grid">
+                    <a class="btn btn-primary btn-xl " href="{{ path('app_reclamation_localisation_show', {'id': reclamation_localisation.id}) }}">Show</a>
+                    <a class="btn btn-primary btn-xl " href="{{ path('app_reclamation_localisation_edit', {'id': reclamation_localisation.id}) }}">Edit</a>
+
+                </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<div class="grid">
+    <a class="btn btn-primary btn-xl " href="{{ path('app_reclamation_localisation_new') }}">Create new</a>
+</div>
+{% endblock %}

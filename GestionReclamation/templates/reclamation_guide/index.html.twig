@@ -1,0 +1,59 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}ReclamationGuide index{% endblock %}
+
+{% block body %}
+    <h1>Reclamation Guide index</h1>
+
+    <table class="table" border="1" >
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id_client</th>
+                <th>Id_admin</th>
+                <th>Id_guide</th>
+                <th>Nom_guide</th>
+                <th>Description</th>
+                <th>Respond</th>
+                <th>Status</th>
+                <th>Reclamationdate</th>
+                
+                <th>Email</th>
+                <th>Full_name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamation_guide in reclamation_guides %}
+            <tr>
+                <td>{{ reclamation_guide.id }}</td>
+                <td>{{ reclamation_guide.idClient }}</td>
+                <td>{{ reclamation_guide.idAdmin }}</td>
+                <td>{{ reclamation_guide.idGuide }}</td>
+                <td>{{ reclamation_guide.nomGuide }}</td>
+                <td>{{ reclamation_guide.description }}</td>
+                <td>{{ reclamation_guide.respond }}</td>
+                <td>{{ reclamation_guide.status ? 'Yes' : 'No' }}</td>
+                <td>{{ reclamation_guide.reclamationdate ? reclamation_guide.reclamationdate|date('Y-m-d') : '' }}</td>
+                
+                <td>{{ reclamation_guide.email }}</td>
+                <td>{{ reclamation_guide.fullname }}</td>
+                <td>
+                <div class="grid">
+                    <a class="btn btn-primary btn-xl " href="{{ path('app_reclamation_guide_show', {'id': reclamation_guide.id}) }}">Show</a>
+                    <a class="btn btn-primary btn-xl " href="{{ path('app_reclamation_guide_edit', {'id': reclamation_guide.id}) }}">Edit</a>
+
+                </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<div class="grid">
+    <a class="btn btn-primary btn-xl " href="{{ path('app_reclamation_guide_new') }}">Create new</a>
+</div>
+{% endblock %}
