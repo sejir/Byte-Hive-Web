@@ -12,13 +12,11 @@ class ReclamationLocalisationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('id_client')
-            
-            ->add('id_localisation')
-            ->add('description')
-            ->add('respond')
-            ->add('status')
-            ->add('reclamationdate')
+        ->add('location')
+        ->add('description')
+        
+        ->add('fullname')
+        ->add('email')
         ;
     }
 

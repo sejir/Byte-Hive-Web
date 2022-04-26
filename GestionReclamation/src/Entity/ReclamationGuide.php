@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ReclamationGuideRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ReclamationGuideRepository::class)
@@ -14,6 +15,7 @@ class ReclamationGuide
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Assert\NotEqualTo("0000")
      */
     private $id;
 
@@ -33,12 +35,27 @@ class ReclamationGuide
     private $id_guide;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=20)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 20,
+     *      minMessage = "Guide name must be at least {{ 2 }} characters long",
+     *      maxMessage = "Guide name cannot be longer than {{ 20 }} characters",
+     *      allowEmptyString = false
+     * )
      */
     private $nom_guide;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 30,
+     *      minMessage = "Your full name must be at least {{ 2 }} characters long",
+     *      maxMessage = "Your full name cannot be longer than {{ 30 }} characters",
+     *      allowEmptyString = false
+     * )
+     * 
      */
     private $description;
 
@@ -56,6 +73,28 @@ class ReclamationGuide
      * @ORM\Column(type="date")
      */
     private $reclamationdate;
+
+    
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email."
+     * )
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 30,
+     *      minMessage = "Your full name must be at least {{ 2 }} characters long",
+     *      maxMessage = "Your full name cannot be longer than {{ 30 }} characters",
+     *      allowEmptyString = false
+     * )
+     */
+    private $fullname;
 
     public function getId(): ?int
     {
@@ -154,6 +193,32 @@ class ReclamationGuide
     public function setReclamationdate(\DateTimeInterface $reclamationdate): self
     {
         $this->reclamationdate = $reclamationdate;
+
+        return $this;
+    }
+
+    
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getFullname(): ?string
+    {
+        return $this->fullname;
+    }
+
+    public function setFullname(string $fullname): self
+    {
+        $this->fullname = $fullname;
 
         return $this;
     }

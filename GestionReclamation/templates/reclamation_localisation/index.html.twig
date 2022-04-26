@@ -16,6 +16,9 @@
                 <th>Respond</th>
                 <th>Status</th>
                 <th>Reclamationdate</th>
+                <th>Location</th>
+                <th>Email</th>
+                <th>Full_name</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -30,9 +33,16 @@
                 <td>{{ reclamation_localisation.respond }}</td>
                 <td>{{ reclamation_localisation.status ? 'Yes' : 'No' }}</td>
                 <td>{{ reclamation_localisation.reclamationdate ? reclamation_localisation.reclamationdate|date('Y-m-d') : '' }}</td>
+                <td>{{ reclamation_localisation.location }}</td>
+                <td>{{ reclamation_localisation.email }}</td>
+                <td>{{ reclamation_localisation.fullname }}</td>
+                
                 <td>
-                    <a href="{{ path('app_reclamation_localisation_show', {'id': reclamation_localisation.id}) }}">show</a>
-                    <a href="{{ path('app_reclamation_localisation_edit', {'id': reclamation_localisation.id}) }}">edit</a>
+                <div class="grid">
+                    <a class="btn btn-primary btn-xl " href="{{ path('app_reclamation_localisation_show', {'id': reclamation_localisation.id}) }}">Show</a>
+                    <a class="btn btn-primary btn-xl " href="{{ path('app_reclamation_localisation_edit', {'id': reclamation_localisation.id}) }}">Edit</a>
+
+                </div>
                 </td>
             </tr>
         {% else %}
@@ -42,6 +52,7 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_reclamation_localisation_new') }}">Create new</a>
+<div class="grid">
+    <a class="btn btn-primary btn-xl " href="{{ path('app_reclamation_localisation_new') }}">Create new</a>
+</div>
 {% endblock %}

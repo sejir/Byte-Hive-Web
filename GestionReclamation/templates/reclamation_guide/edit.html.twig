@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'basefront.html.twig' %}
 
 {% block title %}Edit ReclamationGuide{% endblock %}
 
@@ -6,7 +6,7 @@
     <h1>Edit Reclamation Guide</h1>
 
     {{ include('reclamation_guide/_form.html.twig', {'button_label': 'Update'}) }}
-
+    
     <a href="{{ path('app_reclamation_guide_index') }}">back to list</a>
 
     {{ include('reclamation_guide/_delete_form.html.twig') }}

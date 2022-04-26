@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Act index{% endblock %}
+
+{% block body %}
+    <h1>Act index</h1>
+    <button><a href="/CalendrierAct">Calendrier</a></button>
+    <button><a href="/AfficheActPDF">PDF</a></button>
+    <button><a href="/triDateDebutAsc">Date Asc</a></button>
+    <button><a href="/triDateDebutDesc">Date Desc</a></button>
+    <div class="search_item" >
+        <input  id="myInputAct"  type="text" class="btn btn-sm btn-outline-info"  name="searchLieu" placeholder="recherche ...">
+    </div>
+
+
+    <section>
+        <table class="container">
+
+    <table class="table">
+        <thead>
+            <tr>
+        
+                <th>NomAct</th>
+                <th>Description</th>
+                <th>DDebut</th>
+                <th>DFin</th>
+                <th>Emplacement</th>
+                <th>Idemplacement</th>
+                <th>NbPersonne</th>
+                <th>IdUser</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tbody id="myTableAct">
+        <tr>
+        {% for act in acts %}
+            <tr>
+              
+                <td>{{ act.nomAct }}</td>
+                <td>{{ act.description }}</td>
+                <td>{{ act.dDebut ? act.dDebut|date('Y-m-d') : '' }}</td>
+                <td>{{ act.dFin ? act.dFin|date('Y-m-d') : '' }}</td>
+                <td>{{ act.emplacement }}</td>
+                <td>{{ act.idemplacement }}</td>
+                <td>{{ act.nbPersonne }}</td>
+                <td>{{ act.idUser }}</td>
+                <td>
+                    <a href="{{ path('act_show', {'idAct': act.idAct}) }}">show</a>
+                    <a href="{{ path('act_edit', {'idAct': act.idAct}) }}">edit</a>
+                    <form method="post" action="{{ path('act_delete', {'idAct': act.idAct}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ act.idAct) }}">
+    <button class="btn">Delete</button>
+</form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+        </tr>
+        </tbody>
+    </table>
+    </table>
+    <div class="d-flex justify-content-center">
+        {% do acts.setPageRange(2) %}
+        {{ knp_pagination_render(acts, 'Pagination.html.twig')}}
+    </div>
+    <a href="{{ path('act_new') }}">Create new</a>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInputAct").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTableAct tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+    </section>
+
+{% endblock %}

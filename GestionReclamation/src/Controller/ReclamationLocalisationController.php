@@ -68,7 +68,7 @@ class ReclamationLocalisationController extends AbstractController
             return $this->redirectToRoute('app_reclamation_localisation_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('reclamation_localisation/edit.html.twig', [
+        return $this->render('reclamation_localisation/new.html.twig', [
             'reclamation_localisation' => $reclamationLocalisation,
             'form' => $form->createView(),
         ]);

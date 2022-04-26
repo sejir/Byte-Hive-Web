@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ReclamationLocalisationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ReclamationLocalisationRepository::class)
@@ -51,6 +52,38 @@ class ReclamationLocalisation
      * @ORM\Column(type="date")
      */
     private $reclamationdate;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 30,
+     *      minMessage = "Your full name must be at least {{ 2 }} characters long",
+     *      maxMessage = "Your full name cannot be longer than {{ 30 }} characters",
+     *      allowEmptyString = false
+     * )
+     */
+    private $fullname;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 20,
+     *      minMessage = "Location name must be at least {{ 2 }} characters long",
+     *      maxMessage = "Location name cannot be longer than {{ 20 }} characters",
+     *      allowEmptyString = false
+     * )
+     */
+    private $location;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email."
+     * )
+     */
+    private $email;
 
     public function getId(): ?int
     {
@@ -137,6 +170,42 @@ class ReclamationLocalisation
     public function setReclamationdate(\DateTimeInterface $reclamationdate): self
     {
         $this->reclamationdate = $reclamationdate;
+
+        return $this;
+    }
+
+    public function getFullname(): ?string
+    {
+        return $this->fullname;
+    }
+
+    public function setFullname(string $fullname): self
+    {
+        $this->fullname = $fullname;
+
+        return $this;
+    }
+
+    public function getLocation(): ?string
+    {
+        return $this->location;
+    }
+
+    public function setLocation(string $location): self
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }
