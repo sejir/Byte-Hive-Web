@@ -73,4 +73,14 @@ class GuideRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function filterGuide($nom){
+        $qb = $this->createQueryBuilder('g')
+            ->select('g')
+            ->where('g.nom LIKE :nom')
+
+            ->setParameter('nom','%'.$nom.'%')
+
+            ->getQuery()->getResult();
+        return $qb;
+    }
 }

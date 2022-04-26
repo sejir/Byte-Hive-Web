@@ -9,12 +9,52 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 /**
- * @Route("/upcomingevents")
+ * @Route("/up", name="app_upcomingevents")
  */
 class UpcomingeventsController extends AbstractController
 {
+    /**
+     * @Route("/listp", name="app_upcomingevents_list", methods={"GET"})
+     */
+    public function listp(UpcomingeventsRepository $upcomingeventsRepository): Response
+    {
+
+
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+        $list_commande = $upcomingeventsRepository->findAll();
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('upcomingevents/listp.html.twig', [
+            'upcomingevents'=> $list_commande,
+        ]);
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => true
+        ]);
+    }
+
+
+
+
     /**
      * @Route("/all", name="app_upcomingevents_index", methods={"GET"})
      */
@@ -27,7 +67,18 @@ class UpcomingeventsController extends AbstractController
         ]);
         
     }
+    /**
+     * @Route("/adminu", name="app_upcomingevents_admin", methods={"GET"})
+     */
+    public function admin(UpcomingeventsRepository $upcomingeventsRepository): Response
+    {
 
+        $list_commande = $upcomingeventsRepository->findAll();
+        return $this->render('upcomingevents_admin/adminu.html.twig', [
+            'upcomingevents'=> $list_commande,
+        ]);
+
+    }
     /**
      * @Route("/new", name="app_upcomingevents_new", methods={"GET", "POST"})
      */
@@ -39,7 +90,7 @@ class UpcomingeventsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $upcomingeventsRepository->add($upcomingevent);
-            return $this->redirectToRoute('app_upcomingevents_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_upcomingeventsapp_upcomingevents_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('upcomingevents/new.html.twig', [
@@ -65,7 +116,7 @@ class UpcomingeventsController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $upcomingeventsRepository->add($upcomingevent);
-            return $this->redirectToRoute('app_upcomingevents_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_upcomingeventsapp_upcomingevents_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('upcomingevents/edit.html.twig', [
@@ -82,9 +133,8 @@ class UpcomingeventsController extends AbstractController
             $upcomingeventsRepository->remove($upcomingevent);
         }
 
-        return $this->redirectToRoute('app_upcomingevents_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_upcomingeventsapp_upcomingevents_index', [], Response::HTTP_SEE_OTHER);
     }
-
 
 
 

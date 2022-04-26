@@ -1,0 +1,32 @@
+
+ {% extends 'base.html.twig' %}
+
+ {% block title %}Edit Guide{% endblock %}
+
+ {% block body %}
+            <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Event_number</th>
+                <th>Event_name</th>
+                <th>Location</th>
+                <th>Date_camping</th>
+                <th>Guide</th>
+                <th>Id_guide</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for upcomingevent in upcomingevents %}
+        <tr>
+            <td>{{ upcomingevent.id }}</td>
+            <td>{{ upcomingevent.eventNumber }}</td>
+            <td>{{ upcomingevent.eventName }}</td>
+            <td>{{ upcomingevent.location }}</td>
+            <td>{{ upcomingevent.dateCamping ? upcomingevent.dateCamping|date('Y-m-d') : '' }}</td>
+            <td>{{ upcomingevent.guide }}</td>
+            <td>{{ upcomingevent.idGuide }}</td>
+        </tr>
+            {% endfor %}
+{% endblock %}
