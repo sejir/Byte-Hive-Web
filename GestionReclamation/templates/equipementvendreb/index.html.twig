@@ -1,0 +1,75 @@
+
+{% extends 'baseb.html.twig' %}
+{% block title %}Equipements à vendre{% endblock %}
+{% block body %}
+
+    <script src="{{ asset('/assets/vendor/aos/aos.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/php-email-form/validate.js') }}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+
+
+    <div class="container aos-init aos-animate" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Equipements</h2>
+            <h1>Equipements à Vendre</h1>
+
+        </div>
+
+        <div>
+            <a href="{{ path('chiffre') }}"> Chiffre d'affaire</a></div>
+            <div>
+            <a href="{{ path('stat') }}"> Statistique</a></div>
+                <div>
+                    <div>
+                        <a href="{{ path('Liste') }}"> PDF</a></div>
+                    <div>
+            <a href="{{ path('app_equipementvendreb_new') }}">Ajouter un Equipement</a></div>
+        <div class="row menu-container aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" style="position: relative; height: 600px;">
+            {% for equipementvendre in equipementvendres %}
+                <div class="col-lg-6 menu-item filter-starters" style="position: absolute; left: 0px; top: 0px;">
+                    <a href="{{ path('app_equipementvendreb_show', {'idequipement': equipementvendre.idequipement}) }}"><img src="{{ asset('/assets/img/menu/lobster-bisque.jpg') }}" class="menu-img" alt=""></a>
+                    <div class="menu-content">
+                        <a href="{{ path('app_equipementvendreb_show', {'idequipement': equipementvendre.idequipement}) }}">{{ equipementvendre.nomequipement }}</a>
+                    </div>
+                    <div class="menu-ingredients">
+                        Prix Equipement:
+                        {{ equipementvendre.prixequipement }}
+                    </div>
+                    <div class="menu-ingredients">
+                        Description Equipement:
+                        {{ equipementvendre.descriptionequipement }}
+                    </div>
+                    <div class="menu-ingredients">
+                        Quantite Equipement:
+                        {{ equipementvendre.quantiteequipement }}
+                    </div>
+                    <div class="menu-ingredients">
+                        Rating:
+                        {{ equipementvendre.rating }}
+                    </div>
+                    <a href="{{ path('app_equipementvendreb_edit', {'idequipement': equipementvendre.idequipement}) }}"> Modifier</a>
+                    {{ include('equipementvendreb/_delete_form.html.twig') }}
+
+                </div>
+
+            {% else %}
+                <tr>
+                    <td colspan="9">no records found</td>
+                </tr>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+
+

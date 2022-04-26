@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Equipementvendre{% endblock %}
+
+{% block body %}
+    <h1>Equipement vendre</h1>
+
+    <div class="row menu-container aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" style="position: relative; height: 600px;">
+
+            <div class="col-lg-6 menu-item filter-starters" style="position: absolute; left: 0px; top: 0px;">
+                <img src="{{ asset('/assets/img/menu/lobster-bisque.jpg') }}" class="menu-img" alt="">
+                <div class="menu-content">
+                    <a href="#">{{ equipementvendre.nomequipement }}</a>
+                </div>
+                <div class="menu-ingredients">
+                    Prixequipement
+                    {{ equipementvendre.prixequipement }}
+                </div>
+                <div class="menu-ingredients">
+                    Descriptionequipement
+                    {{ equipementvendre.descriptionequipement }}
+                </div>
+                <div class="menu-ingredients">
+                    Quantite Equipement
+                    {{ equipementvendre.quantiteequipement }}
+                </div>
+                <div class="menu-ingredients">
+                    Rating
+                    {{ equipementvendre.rating }}
+                </div>
+
+            </div>
+
+
+    </div>
+
+   <a href="{{ path('app_equipementvendre_index') }}">Revenir à la liste des Equipements</a>
+
+
+{% endblock %}

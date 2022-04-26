@@ -1,0 +1,30 @@
+{% extends 'baseb.html.twig' %}
+
+{% block title %}Louer{% endblock %}
+
+{% block body %}
+    <h1>Louer</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Idlouer</th>
+                <td>{{ louer.idlouer }}</td>
+            </tr>
+            <tr>
+                <th>Dateemprunt</th>
+                <td>{{ louer.dateemprunt ? louer.dateemprunt|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Dateremise</th>
+                <td>{{ louer.dateremise ? louer.dateremise|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_louer_index') }}">back to list</a>
+
+    <a href="{{ path('app_louer_edit', {'idlouer': louer.idlouer}) }}">edit</a>
+
+    {{ include('louer/_delete_form.html.twig') }}
+{% endblock %}

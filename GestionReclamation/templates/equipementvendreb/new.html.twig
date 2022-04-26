@@ -1,0 +1,11 @@
+{% extends 'baseb.html.twig' %}
+
+{% block title %}New Equipement à Vendre{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un Equipement à Vendre</h1>
+
+    {{ include('equipementvendreb/_form.html.twig') }}
+
+    <a href="{{ path('app_equipementvendreb_index') }}">Revenir à la liste des Equipements</a>
+{% endblock %}

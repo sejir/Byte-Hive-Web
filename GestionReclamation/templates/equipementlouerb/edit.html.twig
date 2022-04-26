@@ -1,0 +1,14 @@
+{% extends 'baseb.html.twig' %}
+
+{% block title %}Edit Equipementlouer{% endblock %}
+
+{% block body %}
+    <h1>Edit Equipementlouer</h1>
+
+    {{ include('equipementlouerb/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_equipementlouerb_index') }}">back to list</a>
+
+    {{ include('equipementlouerb/_delete_form.html.twig') }}
+
+{% endblock %}

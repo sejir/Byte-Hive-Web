@@ -1,0 +1,11 @@
+{% extends 'baseb.html.twig' %}
+
+{% block title %}New Vendre{% endblock %}
+
+{% block body %}
+    <h1>Create new Vendre</h1>
+
+    {{ include('vendre/_form.html.twig') }}
+
+    <a href="{{ path('app_vendre_index') }}">back to list</a>
+{% endblock %}
