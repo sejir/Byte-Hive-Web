@@ -104,8 +104,18 @@ class ReclamationGuideController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$reclamationGuide->getId(), $request->request->get('_token'))) {
             $reclamationGuideRepository->remove($reclamationGuide);
         }
-
         return $this->redirectToRoute('app_reclamation_guide_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    /* public function notif(Request $request, ReclamationGuide $reclamationGuide, ReclamationGuideRepository $reclamationGuideRepository, NotifierInterface $notifier, string $description): Response
+    {
+        $reclamationGuide = new ReclamationGuide();
+        $form = $this->createForm(ReclamationGuideType::class, $reclamationGuide);
+        $this->bus->dispatch(new CommentMessage($reclamationGuide->getId(), $context));
+        $notifier->send(new Notification('Thank you for the feedback; your comment will be posted after moderation.', ['browser']));
+        return $this->render('reclamation_guide/index.html.twig', [
+            'reclamation_guides' => $reclamationGuideRepository->findAll(),
+        ]);
+    } */
     
 }
