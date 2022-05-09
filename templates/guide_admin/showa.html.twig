@@ -1,0 +1,38 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Show Guide{% endblock %}
+
+{% block body %}
+    <h1>Guide</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ guide.id }}</td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ guide.nom }}</td>
+        </tr>
+        <tr>
+            <th>Prenom</th>
+            <td>{{ guide.prenom }}</td>
+        </tr>
+        <tr>
+            <th>Disponoibilte</th>
+            <td>{{ guide.disponoibilte ? guide.disponoibilte|date('Y-m-d') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Lieux</th>
+            <td>{{ guide.lieux }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_guide_admin') }}">back to list</a>
+
+    <a href="{{ path('app_guide_editt', {'id': guide.id}) }}">edit</a>
+
+    {{ include('guide_admin/deletea.html.twig') }}
+{% endblock %}

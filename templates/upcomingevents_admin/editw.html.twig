@@ -1,0 +1,13 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Guide index{% endblock %}
+
+{% block body %}
+    <h1>Edit Upcomingevents</h1>
+
+    {{ include('upcomingevents/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_upcomingeventsapp_upcomingevents_admin') }}">back to list</a>
+
+    {{ include('upcomingevents_admin/deletew.html.twig') }}
+{% endblock %}

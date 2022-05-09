@@ -1,0 +1,33 @@
+
+
+{% block body %}
+    <h1>Liste des utlisateurs</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Lastname</th>
+                <th>Name</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.Lastname }}</td>
+                <td>{{ user.Name }}</td>
+              
+
+                
+         
+            
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

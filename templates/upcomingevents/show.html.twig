@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Upcomingevents{% endblock %}
+
+{% block body %}
+    <h1>Upcomingevents</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+
+                <td>{{ upcomingevent.id }}</td>
+            </tr>
+            <tr>
+                <th>Event_number</th>
+                <td>{{ upcomingevent.eventNumber }}</td>
+            </tr>
+            <tr>
+                <th>Event_name</th>
+                <td>{{ upcomingevent.eventName }}</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>{{ upcomingevent.location }}</td>
+            </tr>
+            <tr>
+                <th>Date_camping</th>
+                <td>{{ upcomingevent.dateCamping ? upcomingevent.dateCamping|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Guide</th>
+                <td>{{ upcomingevent.guide }}</td>
+            </tr>
+            <tr>
+                <th>Id_guide</th>
+                <td>{{ upcomingevent.idGuide }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_upcomingeventsapp_upcomingevents_index') }}">back to list</a>
+
+    <a href="{{ path('app_upcomingeventsapp_upcomingevents_edit', {'id': upcomingevent.id}) }}">edit</a>
+
+
+
+{% endblock body %}
