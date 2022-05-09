@@ -1,0 +1,13 @@
+{% extends 'behijab.html.twig' %}
+
+{% block title %}Edit Equipement à vendre{% endblock %}
+
+{% block body %}
+    <h1>Modifier un Equipement à vendre</h1>
+
+    {{ include('equipementvendreb/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_equipementvendreb_index') }}">back to list</a>
+
+    {{ include('equipementvendreb/_delete_form.html.twig') }}
+{% endblock %}

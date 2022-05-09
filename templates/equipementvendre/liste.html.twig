@@ -1,0 +1,71 @@
+{% block body %}
+    <h1 align="center">Liste des articles</h1><hr>
+
+    <table>
+        <thead>
+        <tr>
+            <th class="wd-15p">ID</th>
+            <th class="wd-15p">Nom</th>
+            <th class="wd-20p">Prix</th>
+            <th class="wd-20p">Description</th>
+            <th class="wd-20p">Quantite</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for a in equipementvendres %}
+            <tr >
+                <td>{{a.idequipement}}</td>
+                <td>{{a.nomequipement}}</td>
+                <td>{{a.prixequipement}}</td>
+                <td>{{a.descriptionequipement}}</td>
+                <td>{{a.quantiteequipement}}</td>
+
+
+            </tr >
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+{% endblock %}
+
+<html>
+<head>
+    <title>Titre du document</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        thead {
+            background-color: #1c87c9;
+            color: #ffffff;
+        }
+        th {
+            text-align: center;
+            height: 50px;
+        }
+        tbody tr:nth-child(odd) {
+            background: #ffffff;
+        }
+        tbody tr:nth-child(even) {
+            background: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+</body>
+</html>

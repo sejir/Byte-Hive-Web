@@ -1,0 +1,37 @@
+{% extends 'behijab.html.twig' %}
+
+{% block title %}Equipementlouer{% endblock %}
+
+{% block body %}
+    <h1>Equipement louer</h1>
+
+    <div class="row menu-container aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" style="position: relative; height: 600px;">
+
+        <div class="col-lg-6 menu-item filter-starters" style="position: absolute; left: 0px; top: 0px;">
+            <img src="{{ asset('/assets/img/menu/lobster-bisque.jpg') }}" class="menu-img" alt="">
+            <div class="menu-content">
+                <a href="#">{{ equipementlouer.nomequipement }}</a>
+            </div>
+            <div class="menu-ingredients">
+                Prix equipement
+                {{ equipementlouer.prixequipement }}
+            </div>
+            <div class="menu-ingredients">
+                Description equipement
+                {{ equipementlouer.descriptionequipement }}
+            </div>
+            <div class="menu-ingredients">
+                Rating
+                {{ equipementlouer.rating }}
+            </div>
+
+        </div>
+
+
+    </div>
+    <a href="{{ path('app_equipementlouerb_edit', {'idequipement': equipementlouer.idequipement}) }}"> Modifier</a>
+    {{ include('equipementlouerb/_delete_form.html.twig') }}
+    <a href="{{ path('app_equipementlouerb_index') }}">Revenir à la liste des Equipements</a>
+
+
+{% endblock %}

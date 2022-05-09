@@ -1,0 +1,11 @@
+{% extends 'behija.html.twig' %}
+
+{% block title %}New Equipementvendre{% endblock %}
+
+{% block body %}
+    <h1>Create new Equipementvendre</h1>
+
+    {{ include('equipementvendre/_form.html.twig') }}
+
+    <a href="{{ path('app_equipementvendre_index') }}">back to list</a>
+{% endblock %}

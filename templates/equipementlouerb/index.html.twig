@@ -1,0 +1,62 @@
+{% extends 'behijab.html.twig' %}
+
+{% block title %}Equipement louer index{% endblock %}
+{% block body %}
+    <script src="{{ asset('/assets/vendor/aos/aos.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/php-email-form/validate.js') }}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <div class="container aos-init aos-animate" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Equipements</h2>
+            <h1>Equipements à Louer</h1>
+        </div>
+        <div>
+            <a href="{{ path('stat2') }}"> Statistique</a></div>
+        <div><a href="{{ path('app_equipementlouerb_new') }}">Ajouter un Equipement</a></div>
+
+        <div class="row menu-container aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" style="position: relative; height: 600px;">
+            {% for equipementlouer in equipementlouers %}
+                <div class="col-lg-6 menu-item filter-starters" style="position: absolute; left: 0px; top: 0px;">
+                    <a href="{{ path('app_equipementlouerb_show', {'idequipement': equipementlouer.idequipement}) }}"><img src="{{ asset('/assets/img/menu/lobster-bisque.jpg') }}" class="menu-img" alt=""></a>
+                    <div class="menu-content">
+                        <a href="{{ path('app_equipementlouerb_show', {'idequipement': equipementlouer.idequipement}) }}">{{ equipementlouer.nomequipement }}</a>
+                    </div>
+                    <div class="menu-ingredients">
+                        Prix Equipement:
+                        {{ equipementlouer.prixequipement }}
+                    </div>
+                    <div class="menu-ingredients">
+                        Description Equipement:
+                        {{ equipementlouer.descriptionequipement }}
+                    </div>
+
+                    <div class="menu-ingredients">
+                        Rating:
+                        {{ equipementlouer.rating }}
+                    </div>
+                    <a href="{{ path('app_equipementlouerb_edit', {'idequipement': equipementlouer.idequipement}) }}"> Modifier</a>
+                    {{ include('equipementlouerb/_delete_form.html.twig') }}
+
+
+                </div>
+            {% else %}
+                <tr>
+                    <td colspan="9">no records found</td>
+                </tr>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+
+

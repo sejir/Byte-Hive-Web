@@ -1,0 +1,13 @@
+{% extends 'behijab.html.twig' %}
+
+{% block title %}Edit Vendre{% endblock %}
+
+{% block body %}
+    <h1>Edit Vendre</h1>
+
+    {{ include('vendre/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_vendre_index') }}">back to list</a>
+
+    {{ include('vendre/_delete_form.html.twig') }}
+{% endblock %}

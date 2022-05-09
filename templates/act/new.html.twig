@@ -1,0 +1,74 @@
+{% extends 'chiheb.html.twig' %}
+
+{% block title %}New Act{% endblock %}
+
+
+
+{% block body %}
+    <br><br><br><br><br>
+    <h1 style="color:steelblue" align="center">Ajouter Une Act</h1>
+    <div style="width: 500px;margin: auto" >
+        <br>
+        <div align="center">
+            {{ form_start(form,{'attr':{'class':'form-horizontal'}} ) }}
+            <table align="center">
+                <tr>
+                    <td><label for="">nomAct : </label></td>
+                    <td> {{ form_widget(form.nomAct,{'attr':{'class':'form-control'}}) }}</td>
+                    <td>  {{ form_errors(form.nomAct) }}</td>
+                </tr>
+                <tr>
+                    <td><label for="">description : </label></td>
+                    <td> {{ form_widget(form.description,{'attr':{'class':'form-control'}}) }} </td>
+                    <td> {{ form_errors(form.description) }}</td>
+                </tr>
+
+                <tr>
+                    <td><label for="">dDebut : </label></td>
+                    <td> {{ form_widget(form.dDebut,{'attr':{'class':'form-control'}}) }} </td>
+                    <td> {{ form_errors(form.dDebut) }}</td>
+                </tr>
+
+                <tr>
+                    <td><label for="">dFin : </label></td>
+                    <td> {{ form_widget(form.dFin,{'attr':{'class':'form-control'}}) }} </td>
+                    <td> {{ form_errors(form.dFin) }}</td>
+                </tr>
+
+                <tr>
+                    <td><label for="">emplacement : </label>  </td>
+                    <td> {{ form_widget(form.emplacement,{'attr':{'class':'form-control'}}) }} </td>
+                    <td>  {{ form_errors(form.emplacement) }}</td>
+                </tr>
+
+
+                <tr>
+                    <td><label for="">idemplacement : </label></td>
+                    <td> {{ form_widget(form.idemplacement,{'attr':{'class':'form-control'}}) }} </td>
+                    <td> {{ form_errors(form.idemplacement) }}</td>
+                </tr>
+
+                <tr>
+                    <td><label for="">nbPersonne : </label></td>
+                    <td> {{ form_widget(form.nbPersonne,{'attr':{'class':'form-control'}}) }} </td>
+                    <td> {{ form_errors(form.nbPersonne) }}</td>
+                </tr>
+
+                <tr>
+                    <td><label for="">idUser : </label></td>
+                    <td> {{ form_widget(form.idUser,{'attr':{'class':'form-control'}}) }} </td>
+                    <td> {{ form_errors(form.idUser) }}</td>
+                </tr>
+
+                <br>
+
+            </table>
+        </div>
+    </div>
+
+    <br>
+
+    {{ form_end(form) }}
+
+    <br><br>
+{% endblock %}

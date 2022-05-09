@@ -1,0 +1,42 @@
+{% extends 'behijab.html.twig' %}
+
+{% block title %}Equipement à vendre{% endblock %}
+
+{% block body %}
+    <h1>Equipement vendre</h1>
+
+    <div class="row menu-container aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" style="position: relative; height: 600px;">
+
+        <div class="col-lg-6 menu-item filter-starters" style="position: absolute; left: 0px; top: 0px;">
+            <img src="{{ asset('/assets/img/menu/lobster-bisque.jpg') }}" class="menu-img" alt="">
+            <div class="menu-content">
+                <h4>{{ equipementvendre.nomequipement }}</h4>
+            </div>
+            <div class="menu-ingredients">
+                Prix Equipement:
+                {{ equipementvendre.prixequipement }}
+            </div>
+            <div class="menu-ingredients">
+                Description Equipement:
+                {{ equipementvendre.descriptionequipement }}
+            </div>
+            <div class="menu-ingredients">
+                Quantite Equipement:
+                {{ equipementvendre.quantiteequipement }}
+            </div>
+            <div class="menu-ingredients">
+                Rating:
+                {{ equipementvendre.rating }}
+            </div>
+
+        </div>
+
+
+    </div>
+    <a href="{{ path('app_equipementvendreb_edit', {'idequipement': equipementvendre.idequipement}) }}"> Modifier</a>
+    {{ include('equipementvendreb/_delete_form.html.twig') }}
+    <a href="{{ path('app_equipementvendreb_index') }}">Revenir à la liste des Equipements</a>
+
+
+
+{% endblock %}

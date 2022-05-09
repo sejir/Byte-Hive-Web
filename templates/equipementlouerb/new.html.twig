@@ -1,0 +1,11 @@
+{% extends 'behijab.html.twig' %}
+
+{% block title %}New Equipementlouer{% endblock %}
+
+{% block body %}
+    <h1>Create new Equipementlouer</h1>
+
+    {{ include('equipementlouerb/_form.html.twig') }}
+
+    <a href="{{ path('app_equipementlouerb_index') }}">Revenir à la liste des Equipements</a>
+{% endblock %}
