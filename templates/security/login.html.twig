@@ -1,8 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'chayma.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+ <br><br><br><br>
+<style>
+body {
+  background-image: url('assets/img/camp.jpg');
+}
+</style>
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -43,6 +49,7 @@
     <button class="btn btn-lg btn-primary" type="submit">
         Sign in
     </button>
+     <br><br><br><br>
     <p>
     <a class="btn btn-sm btn-success" href= "{{ path('connect_google') }}">Se connecter avec Google </a>
     </p>

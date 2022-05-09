@@ -5,6 +5,11 @@
  {{ message }}
  </div>
  {% endfor %}
+ <style>
+body {
+  background-image: url('assets/img/camp.jpg');
+}
+</style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,14 +19,14 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/edit">My Account</a>
         
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">log out</a>
+        <a class="nav-link disabled" href="/">log out</a>
       </li>
       <li class="nav-item dropdown pe-3">
       <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -69,7 +74,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="/login">
+              <a class="dropdown-item d-flex align-items-center" href="{{ path('app_logout') }}">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>

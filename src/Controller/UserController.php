@@ -235,12 +235,20 @@ public function deleteuser(Request $request) {
         ]);
     }
  /**
-     * @Route("/" , name = "home")
+     * @Route("/home" , name = "home")
      */
     public function home()
     {
   
       return  $this->render('user/home.html.twig');  
+    }
+    /**
+     * @Route("/" , name = "home2")
+     */
+    public function home2()
+    {
+  
+      return  $this->render('user/index2.html.twig');  
     }
     /**
      * @Route("/menu" , name = "menu")

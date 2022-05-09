@@ -1,17 +1,25 @@
 
 
-{% extends 'chiheb.html.twig' %}
+{% extends 'chayma.html.twig' %}
+
 
 {% block title %}New Utlisateur{% endblock %}
-
 {% block body %}
+<br><br><br><br>
 
+<style>
+body {
+  background-image: url('assets/img/camp.jpg');
+}
+</style>
        <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Inscription</title>
+        
+         <h1 class="h3 mb-3 font-weight-normal">Create Your Account From here !</h1>
 {{ form_start(form, {'attr': {'id': 'new_edit_utilisateur'}}) }}
 {# utilisation de classes bootstrap pour la mise en forme #}
         <div class="row">
@@ -55,7 +63,7 @@
 
     {{ include('user/_form.html.twig') }}
     <a class="btn btn-sm btn-success" href="{{ path('app_login') }}">Se connecter</a>
-    <a class="btn btn-sm btn-success" href="{{ path('home') }}">back</a>
+    <a class="btn btn-sm btn-success" href="{{ path('home2') }}">back</a>
 {% endblock %}
 
 
